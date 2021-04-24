@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="承接上一个，说过的东西还是要做到的 多数元素（简单）先附上题目 来源：力扣（LeetCode） 链接：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;majority-element&#x2F; 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n&#x2F;2 ⌋ 的元素。 你可以假设数组是非空的，并且给定的数组总是存在多数元素。 示例 1: 12输入: [3,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode热门一百题（三）">
+<meta property="og:url" content="http://example.com/2021/04/19/LeetCode%E7%83%AD%E9%97%A8%E4%B8%80%E7%99%BE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="小刘的技术栈">
+<meta property="og:description" content="承接上一个，说过的东西还是要做到的 多数元素（简单）先附上题目 来源：力扣（LeetCode） 链接：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;majority-element&#x2F; 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n&#x2F;2 ⌋ 的元素。 你可以假设数组是非空的，并且给定的数组总是存在多数元素。 示例 1: 12输入: [3,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-18T16:52:06.062Z">
+<meta property="article:modified_time" content="2020-11-07T08:59:43.256Z">
+<meta property="article:author" content="Mr. Liu">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/04/19/LeetCode%E7%83%AD%E9%97%A8%E4%B8%80%E7%99%BE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>LeetCode热门一百题（三） | 小刘的技术栈</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小刘的技术栈</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">来嘛，看一看，记得点星哦</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/doctorAB" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/LeetCode%E7%83%AD%E9%97%A8%E4%B8%80%E7%99%BE%E9%A2%98%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sad.jpg">
+      <meta itemprop="name" content="Mr. Liu">
+      <meta itemprop="description" content="good good study ,day day up">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小刘的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode热门一百题（三）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-19 00:52:06" itemprop="dateCreated datePublished" datetime="2021-04-19T00:52:06+08:00">2021-04-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-07 16:59:43" itemprop="dateModified" datetime="2020-11-07T16:59:43+08:00">2020-11-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>承接上一个，说过的东西还是要做到的</p>
+<h2 id="多数元素（简单）"><a href="#多数元素（简单）" class="headerlink" title="多数元素（简单）"></a>多数元素（简单）</h2><p>先附上题目</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">https://leetcode-cn.com/problems/majority-element/</a></p>
+<p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p>示例 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,3]</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
+<p>示例 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,2,1,1,1,2,2]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>数量足够大，随机算法</p>
+<p>空间不限，hash表</p>
+<p>空间有限，摩尔投票</p>
+<h3 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h3><p>随机算法和hash表这里只做一个简单的介绍</p>
+<p>随机算法（随缘）</p>
+<p>要求数量无线大，可以重复10-100次随机取数，出现次数最多的数即为多数元素</p>
+<p>hash表</p>
+<p>存入hash表，直接取数即可</p>
+<p>这里重点介绍一下摩尔投票</p>
+<p>原理是有一个空的竞技场，来一个人，如果竞技场为空他将占领，不为空他需要和占领者进行确认，是自己人，允许加入，不是自己人两个相互厮杀，直到决出最后一个或一群人占领竞技场。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">来的人:1,0,1,3,2,1,1</span><br><span class="line">厮杀过程：-表示为空，1(2)表示1有两个伙伴占领竞技场</span><br><span class="line">-</span><br><span class="line">1(1)</span><br><span class="line">-</span><br><span class="line">1(1)</span><br><span class="line">-</span><br><span class="line">2(1)</span><br><span class="line">-</span><br><span class="line">1(1)</span><br><span class="line">最后只剩下1占领竞技场</span><br></pre></td></tr></table></figure>
+<h3 id="代码（c）"><a href="#代码（c）" class="headerlink" title="代码（c）"></a>代码（c）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*过半元素*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*hashmap*/</span></span><br><span class="line"><span class="comment">/*random*/</span></span><br><span class="line"><span class="comment">/*摩尔投票*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*摩尔投票*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*记录当前在场*/</span></span><br><span class="line">    <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="comment">/*进行厮杀*/</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;numsSize)&#123;</span><br><span class="line">        <span class="keyword">if</span>(temp == nums[i]) &#123;</span><br><span class="line">            <span class="comment">/*同伴+1*/</span></span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            count--;</span><br><span class="line">            <span class="comment">/*被打败*/</span></span><br><span class="line">            <span class="keyword">if</span>(count &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                temp = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/*无人生还*/</span></span><br><span class="line">            <span class="keyword">if</span>(count == <span class="number">0</span>)&#123;</span><br><span class="line">                temp = nums[i+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="合并两c个有序链表（简单）"><a href="#合并两c个有序链表（简单）" class="headerlink" title="合并两c个有序链表（简单）"></a>合并两c个有序链表（简单）</h2><p>先附上题目</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">https://leetcode-cn.com/problems/merge-two-sorted-lists/</a></p>
+<p>将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4</span><br><span class="line">输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</span><br></pre></td></tr></table></figure>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>链表的链接主要是对链表进行操作，方法也是几种比较固定的方式</p>
+<p>双指针（迭代）</p>
+<p>子问题（递归）</p>
+<h3 id="详解-1"><a href="#详解-1" class="headerlink" title="详解"></a>详解</h3><p>双指针（迭代）</p>
+<p>双指针的思路是最容易想出来的一种，用两个指针指向两个链表，然后进行移动比较，遍历一遍出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-------------------</span><br><span class="line">1-&gt;2-&gt;4-&gt;6</span><br><span class="line">^</span><br><span class="line">3-&gt;5-&gt;7</span><br><span class="line">^</span><br><span class="line">-------------------</span><br><span class="line">1-&gt;2-&gt;3-&gt;4-&gt;6</span><br><span class="line">   ^</span><br><span class="line">5-&gt;7</span><br><span class="line">^</span><br><span class="line">-------------------</span><br><span class="line">1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6</span><br><span class="line">         ^</span><br><span class="line">7</span><br><span class="line">^</span><br><span class="line">-------------------</span><br><span class="line">1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7</span><br><span class="line">                  ^</span><br><span class="line">空</span><br><span class="line">^</span><br><span class="line">-------------------</span><br></pre></td></tr></table></figure>
+<p>子问题（递归）</p>
+<p>这个思路是比较难想到的，我们可以这样理解，任意选取一个链表，将其分为已有序排列和待排列，我们可以得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链表A：|（已排列）|+|（待排列）|</span><br><span class="line">链表B：|		 | |（待排列）|</span><br></pre></td></tr></table></figure>
+<p>问题变成，将两个链表中的待排列部分进行合并，之后插入到已排列的后面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设method（x，y）是将x，y两个链表合并成有序链表</span><br><span class="line">现有A，B两个链表</span><br><span class="line">进行子问题描述</span><br><span class="line">每一步可以解释成为如下表达式</span><br><span class="line">method（A，B）&#x3D; A(已排列)+method（A（待排列），B（待排列））</span><br></pre></td></tr></table></figure>
+<h3 id="代码（C）"><a href="#代码（C）" class="headerlink" title="代码（C）"></a>代码（C）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct ListNode *next;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*方法很多*/</span></span><br><span class="line"><span class="comment">/*最简单肯定是暴力*/</span></span><br><span class="line"><span class="comment">/*可以尝试多指针*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*递归*/</span></span><br><span class="line"><span class="comment">/*每次选择一部分*/</span></span><br><span class="line"><span class="function">struct ListNode* <span class="title">mergeTwoLists</span><span class="params">(struct ListNode* l1, struct ListNode* l2)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*选择一个作为头节点*/</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">temp</span> = <span class="title">NULL</span>;</span></span><br><span class="line">    <span class="comment">/*下一个节点*/</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">p</span> = <span class="title">NULL</span>;</span></span><br><span class="line">    <span class="comment">/*结束递归*/</span></span><br><span class="line">    <span class="keyword">if</span>(l1 == <span class="literal">NULL</span> &amp;&amp; l2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(l1 != <span class="literal">NULL</span> &amp;&amp; l2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> l1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(l1 == <span class="literal">NULL</span> &amp;&amp; l2 != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">/*选择开始节点*/</span></span><br><span class="line">        <span class="keyword">if</span>(l1-&gt;val &lt;= l2-&gt;val)&#123;</span><br><span class="line">            temp = l1;</span><br><span class="line">            p = temp-&gt;next;</span><br><span class="line">            <span class="comment">/*子问题*/</span></span><br><span class="line">            temp-&gt;next = mergeTwoLists(p,l2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            temp = l2;</span><br><span class="line">            p = temp-&gt;next;</span><br><span class="line">            <span class="comment">/*子问题*/</span></span><br><span class="line">            temp-&gt;next = mergeTwoLists(l1,p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="移动零（简单）"><a href="#移动零（简单）" class="headerlink" title="移动零（简单）"></a>移动零（简单）</h2><p>先附上题目</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/move-zeroes/">https://leetcode-cn.com/problems/move-zeroes/</a></p>
+<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p>示例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [0,1,0,3,12]</span><br><span class="line">输出: [1,3,12,0,0]</span><br></pre></td></tr></table></figure>
+<p>说明:</p>
+<p>必须在原数组上操作，不能拷贝额外的数组。<br>尽量减少操作次数。</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>要求已经明确规定了不能拷贝额外的数组，那么问题的解决方法其实就比较有限了</p>
+<p>这里同样是给出两种我个人实现的</p>
+<p>移动</p>
+<p>交换</p>
+<h3 id="详解-2"><a href="#详解-2" class="headerlink" title="详解"></a>详解</h3><p>移动的思路是最好理解的，用一个简单的过程就可以清楚这个过程了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">0,1,0,3,12</span><br><span class="line">^</span><br><span class="line">1,0,3,12,0      移动到最后</span><br><span class="line">^</span><br><span class="line">1,0,3,12,0</span><br><span class="line">  ^</span><br><span class="line">1,3,12,0,0      移动到最后</span><br><span class="line">  ^</span><br><span class="line">1,3,12,0,0</span><br><span class="line">    ^</span><br><span class="line">结束</span><br></pre></td></tr></table></figure>
+<p>这种方法是最简单的，但是有一点需要注意，通过移动需要判断何时结束，一般建议用一个变量记录数组长度，来确定最后一个需要移动的数</p>
+<p>交换</p>
+<p>这里的交换的思想是基于，快排的思想的，确定一个基准点，将比基准点大的数移动到右边，比基准点小的数移动到左边。</p>
+<p>不多针对题目我们的要求会改变，但是方法不变</p>
+<p>用一段过程帮助大家理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">用i和j表示</span><br><span class="line">0,1,0,3,12</span><br><span class="line">i</span><br><span class="line">j</span><br><span class="line">0,1,0,3,12</span><br><span class="line">  i</span><br><span class="line">j</span><br><span class="line">1,0,0,3,12         i指向的数大于0，与j指向的数进行交换，同时j++</span><br><span class="line">  i</span><br><span class="line">  j</span><br><span class="line">1,0,0,3,12</span><br><span class="line">    i</span><br><span class="line">  j</span><br><span class="line">1,0,0,3,12         i指向的数大于0，与j指向的数进行交换，同时j++</span><br><span class="line">      i</span><br><span class="line">  j</span><br><span class="line">1,3,0,0,12</span><br><span class="line">      i</span><br><span class="line">	j</span><br><span class="line">1,3,0,0,12         i指向的数大于0，与j指向的数进行交换，同时j++</span><br><span class="line">        i</span><br><span class="line">    j</span><br><span class="line">1,3,12,0,0</span><br><span class="line">         i</span><br><span class="line">       j</span><br><span class="line">结束</span><br></pre></td></tr></table></figure>
+<p>其实通过比较这个过程，交换的操作次数相比较于移动大幅度减少</p>
+<h3 id="代码（c）-1"><a href="#代码（c）-1" class="headerlink" title="代码（c）"></a>代码（c）</h3><p>移动</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*相对顺序*/</span></span><br><span class="line"><span class="comment">/*必须在原数组上操作，不能拷贝额外的数组。</span></span><br><span class="line"><span class="comment">尽量减少操作次数。*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*记录0的个数*/</span></span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*定位*/</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;numsSize &amp;&amp; numsSize - i &gt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)&#123;</span><br><span class="line">            n++;</span><br><span class="line">            <span class="keyword">for</span>(j = i;j&lt;numsSize-n;j++)&#123;</span><br><span class="line">                nums[j] = nums[j+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        nums[numsSize - n] = <span class="number">0</span>;</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>交换</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*相对顺序*/</span></span><br><span class="line"><span class="comment">/*必须在原数组上操作，不能拷贝额外的数组。</span></span><br><span class="line"><span class="comment">尽量减少操作次数。*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*通过交换来减少步骤*/</span></span><br><span class="line"><span class="comment">/*快排的思想,0放右边，非0放左边*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> temp;</span><br><span class="line">   <span class="keyword">if</span>(numsSize != <span class="number">0</span>)&#123;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>;i&lt;numsSize;i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(nums[i] != <span class="number">0</span>)&#123;</span><br><span class="line">               temp = nums[i];</span><br><span class="line">               nums[i] = nums[j];</span><br><span class="line">               nums[j] = temp;</span><br><span class="line">               j++;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实最近一直在纠结自己的研究方向，啥都想学，有时候觉得Java全家桶开发不错，有时候又觉得要不试一试算法进行数据挖掘和分析之类的，唉，可能是啥都不会所以才太希望有一个东西可以帮助自己只要学了就可以一劳永逸，靠这个吃一辈子的饭。细细思考想太多没有什么用，不去学习永远也不知道那几个方向有啥用，另一方面我个人还是比较容易受外界的影响，手高眼底，先学，读博是绝对不会读的，将感兴趣的都学一学，再来说后话。啥都想学，啥都没开始学，是最痛苦的。</p>
+<p>严禁转载！！！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/07/JavaSE%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="JavaSE（二）">
+      <i class="fa fa-chevron-left"></i> JavaSE（二）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/24/%E4%BB%A3%E7%90%86/" rel="next" title="代理">
+      代理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89"><span class="nav-text">多数元素（简单）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3"><span class="nav-text">详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88c%EF%BC%89"><span class="nav-text">代码（c）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E4%B8%A4c%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89"><span class="nav-text">合并两c个有序链表（简单）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3-1"><span class="nav-text">详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88C%EF%BC%89"><span class="nav-text">代码（C）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E9%9B%B6%EF%BC%88%E7%AE%80%E5%8D%95%EF%BC%89"><span class="nav-text">移动零（简单）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3-2"><span class="nav-text">详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%88c%EF%BC%89-1"><span class="nav-text">代码（c）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mr. Liu"
+      src="/images/sad.jpg">
+  <p class="site-author-name" itemprop="name">Mr. Liu</p>
+  <div class="site-description" itemprop="description">good good study ,day day up</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr. Liu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
