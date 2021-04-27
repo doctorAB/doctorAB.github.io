@@ -155,6 +155,267 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/SpringMVC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sad.jpg">
+      <meta itemprop="name" content="Mr. Liu">
+      <meta itemprop="description" content="good good study ,day day up">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小刘的技术栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/25/SpringMVC/" class="post-title-link" itemprop="url">SpringMVC</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-25 20:45:43" itemprop="dateCreated datePublished" datetime="2021-04-25T20:45:43+08:00">2021-04-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-27 21:51:45" itemprop="dateModified" datetime="2021-04-27T21:51:45+08:00">2021-04-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA%E5%85%A8%E5%AE%B6%E6%A1%B6/" itemprop="url" rel="index"><span itemprop="name">JAVA全家桶</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>三层架构</p>
+<ul>
+<li>Model:模型，要展示的数据，包括数据及其行为</li>
+<li>View:视图，复杂模型的展示，也就是页面</li>
+<li>Controller:控制器，负责应用的流程控制，用于接收用户的请求，然后委托模型进行处理，再处理后的结果交给视图展示</li>
+</ul>
+<p>这个比较难理解的是Model(模型)和Controller(控制器)的界限</p>
+<p>因为在很多小例子中，这两个是合并在一起的，这实际上是一种很不规范的开发方式</p>
+<p>就比如，页面发来请求找后台要用户的数据</p>
+<p>一般理解就是</p>
+<p><img src="/2021/04/25/SpringMVC/errorMVC.png" alt="errorMVC"></p>
+<p>就两层结构</p>
+<p>这就是分界不明显</p>
+<p>分界明显的理解是</p>
+<p><img src="/2021/04/25/SpringMVC/MVC.png" alt="MVC"></p>
+<p>这样就好理解了</p>
+<h2 id="SpringMVC-1"><a href="#SpringMVC-1" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><p>SpringMVC就是在MVC的基础上进行封装，变得更简洁，适用于Spring架构</p>
+<p>一样是三层架构</p>
+<p>业务的处理流程如图</p>
+<p><img src="/2021/04/25/SpringMVC/springMVC.png" alt="springMVC"></p>
+<p>可以看出核心还是MVC</p>
+<p>。。。不会有人看不出吧</p>
+<h2 id="SpringMVC的简单实现"><a href="#SpringMVC的简单实现" class="headerlink" title="SpringMVC的简单实现"></a>SpringMVC的简单实现</h2><p>这个要特别注意Tomcat的版本</p>
+<p>尽量选</p>
+<p><a href="[Apache Tomcat 安装与配置教程 - 李培冠 - 博客园 (cnblogs.com">Tomcat 9</a>](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lpgit/p/10929507.html">https://www.cnblogs.com/lpgit/p/10929507.html</a>))</p>
+<p>。。。千万不要选Tomcat 10，好多包都不不匹配，都是泪</p>
+<p>先是配置文件</p>
+<p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jstl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>描述一下场景</p>
+<p>访问</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http://localhost:8080/mvcHello</span></span><br></pre></td></tr></table></figure>
+<p>将后台的用户数据在界面中显示</p>
+<p>大致的流程应该是这样子的</p>
+<p><img src="/2021/04/25/SpringMVC/springMVC-user.png" alt="springMVC-user"></p>
+<p>文件目录结构</p>
+<p><img src="/2021/04/25/SpringMVC/spring-mvc01.png" alt="spring-mvc01"></p>
+<p>jsp文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hello.jsp</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;%--文档类型--%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;%--字符编码元信息--%&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">        &lt;%--标题--%&gt;</span><br><span class="line">        &lt;title&gt;User View&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        Hello:&lt;br&gt;</span><br><span class="line">        &lt;%--获取模型数据的user对象的id属性值--%&gt;</span><br><span class="line">        用户Id:$&#123;user.id&#125;&lt;br&gt;</span><br><span class="line">        &lt;%--获取模型数据的user对象的name属性值--%&gt;</span><br><span class="line">        用户名:$&#123;user.name&#125;&lt;br&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>按步骤看代码</p>
+<h3 id="DispatcherServlet-中央控制器"><a href="#DispatcherServlet-中央控制器" class="headerlink" title="DispatcherServlet(中央控制器)"></a>DispatcherServlet(中央控制器)</h3><p>在web.xml中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Servlet配置--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--中央控制器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Servler名字--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--参数名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--参数值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:application.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--容器启动时加载--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--Servlet与请求URL映射--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--接收请求--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Servlet名字--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--匹配URL路径--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>创建中央控制器，</p>
+<p>当请求到来，通过映射响应，进入application.xml文件进行处理</p>
+<h3 id="HandlerMapping-处理器映射器"><a href="#HandlerMapping-处理器映射器" class="headerlink" title="HandlerMapping(处理器映射器)"></a>HandlerMapping(处理器映射器)</h3><p>在application.xml中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--处理器对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mvcHelloController&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.liu.controller.MVCHelloController&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--处理器映射器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.handler.SimpleUrlHandlerMapping&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--路径映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;mappings&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">&quot;/mvcHello&quot;</span>&gt;</span>mvcHelloController<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>进入application.xml后</p>
+<p>根据处理器映射器映射的“/mvcHello”，找到处理器对象，并返回</p>
+<h3 id="HandlerAdapter-处理器适配器"><a href="#HandlerAdapter-处理器适配器" class="headerlink" title="HandlerAdapter(处理器适配器)"></a>HandlerAdapter(处理器适配器)</h3><p>处理器适配器有多种类型，这里使用的是SimpleControllerHandlerAdapter</p>
+<p>在application.xml中配置，是默认的处理器适配器，不写也没事</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--处理器适配器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>找到处理器对象后，通过处理器适配器，找到继承了Controller的对应处理器对象的自定义控制器(处理器)，调用自定义控制器(处理器)，在收到返回的视图模型后返回给中央处理器</p>
+<h3 id="Handler-自定义Controller控制器，即处理器"><a href="#Handler-自定义Controller控制器，即处理器" class="headerlink" title="Handler(自定义Controller控制器，即处理器)"></a>Handler(自定义Controller控制器，即处理器)</h3><p>java文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义Controller控制器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MVCHelloController</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="comment">//处理请求类</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//初始化模型视图对象</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//设置视图名</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">       	<span class="comment">// 请求用户数据</span></span><br><span class="line">        User user = <span class="keyword">new</span> UserServiceImp().get();</span><br><span class="line">        <span class="comment">//将User对象添加到模型数据中</span></span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;user&quot;</span>,user);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">补充代码</span><br><span class="line">User对象</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User服务接口</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User服务接口实现</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImp</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">&quot;User 1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>自定义Controller控制器，即处理器，创建视图模型，进行处理，处理结束后返回</p>
+<h3 id="ViewResoler-视图解析器"><a href="#ViewResoler-视图解析器" class="headerlink" title="ViewResoler(视图解析器)"></a>ViewResoler(视图解析器)</h3><p>在application.xml中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--视图解析器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--视图前缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;prefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;/WEB-INF/view/&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--视图后缀--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suffix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;.jsp&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>中央处理器在收到返回的视图模型后，再次使用application.xml中的视图解析器，进行渲染返回视图</p>
+<p>最后中央处理器将渲染后的视图返回给用户</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>各个环节的细节部分，需要自己去官网查看</p>
+<p>比如一些标签的含义，值的用法属性不做过多的解释</p>
+<p>这里简单的介绍一下一些东西的分类</p>
+<h4 id="HandlerMapping-处理器映射器-1"><a href="#HandlerMapping-处理器映射器-1" class="headerlink" title="HandlerMapping(处理器映射器)"></a>HandlerMapping(处理器映射器)</h4><p>Spring内置三种处理器映射器</p>
+<ul>
+<li><p>SimpleUrlHandlerMapping(简单的URL处理器映射器)</p>
+<p>类层级的映射，面向类</p>
+<p>上面的例子使用的就是这种</p>
+</li>
+<li><p>BeanNameUrlHandlerMapping(组件名URL处理器映射器)</p>
+<p>类层级的映射，面向类</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">上面例子的映射可以更改为</span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;mvcHelloController&quot;</span> <span class="attr">name</span>=<span class="string">&quot;/mvcHello&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.liu.controller.MVCHelloController&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RequestMappingHandlerMapping(请求映射处理器映射)</p>
+<p>方法层级的注解映射，是目前最常用的，相关注解有</p>
+<ul>
+<li>@Controller</li>
+<li>@RequestMapping</li>
+<li>@GetMapping</li>
+<li>@PostMapping</li>
+</ul>
+<p>之后会用注解实现上述例子</p>
+</li>
+</ul>
+<h4 id="HandlerAdapter-处理器适配器-1"><a href="#HandlerAdapter-处理器适配器-1" class="headerlink" title="HandlerAdapter(处理器适配器)"></a>HandlerAdapter(处理器适配器)</h4><p>Spring内置四种处理器适配器</p>
+<ul>
+<li><p>SimpleControllerHandlerAdapter(简单的控制器处理适配器)</p>
+<p>继承Controller接口实现，实现handlerRequest函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception</span>;</span><br></pre></td></tr></table></figure>
+<p>上面的例子使用的就是这种</p>
+</li>
+<li><p>HttpRequestHandlerAdapter(HTTP请求处理器适配器)</p>
+<p>主要处理普通的HTTP请求</p>
+<p>继承HttpRequestHandler接口实现，实现handlerRequest函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> ServletException, IOException</span>;</span><br></pre></td></tr></table></figure>
+<p>上面的例子用该方法实现</p>
+<p>配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MVCHelloController</span> <span class="keyword">implements</span> <span class="title">HttpRequestHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 请求用户数据</span></span><br><span class="line">        User user = <span class="keyword">new</span> UserServiceImp().get();</span><br><span class="line">        <span class="comment">// 设置请求参数</span></span><br><span class="line">        httpServletRequest.setAttribute(<span class="string">&quot;user&quot;</span>,user);</span><br><span class="line">        <span class="comment">// 返回参数</span></span><br><span class="line">        httpServletRequest.getRequestDispatcher(<span class="string">&quot;/WEB-INF/view/hello.jsp&quot;</span>).forward(httpServletRequest,httpServletResponse);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SimpleServletHandlerAdapter(Servlet控制器处理适配器)</p>
+<p>继承Servlet接口实现，实现service函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig var1)</span> <span class="keyword">throws</span> ServletException</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">ServletConfig <span class="title">getServletConfig</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest var1, ServletResponse var2)</span> <span class="keyword">throws</span> ServletException, IOException</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">String <span class="title">getServletInfo</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.handler.SimpleServletHandlerAdapter&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MVCHelloController</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 请求用户数据</span></span><br><span class="line">        User user = <span class="keyword">new</span> UserServiceImp().get();</span><br><span class="line">        <span class="comment">// 设置请求参数</span></span><br><span class="line">        servletRequest.setAttribute(<span class="string">&quot;user&quot;</span>,user);</span><br><span class="line">        <span class="comment">// 返回参数</span></span><br><span class="line">        servletRequest.getRequestDispatcher(<span class="string">&quot;/WEB-INF/view/hello.jsp&quot;</span>).forward(servletRequest,servletResponse);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RequestMappingHandlerAdapter(请求映射处理器适配器)</p>
+<p>使用注解的适配器，在后面会用注解实现上述例子实现，不再这赘述</p>
+</li>
+</ul>
+<p>一张表</p>
+<p>解释处理器映射器、处理器适配器和处理器之间的对应关系</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">处理器映射器</th>
+<th style="text-align:center">处理器适配器</th>
+<th style="text-align:center">处理器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">BeanNameUrlHandlerMapping<br>SimpleUrlHandlerMapping</td>
+<td style="text-align:center">SimpleControllerHandlerAdapter</td>
+<td style="text-align:center">实现Controller的接口类</td>
+</tr>
+<tr>
+<td style="text-align:center">BeanNameUrlHandlerMapping<br>SimpleUrlHandlerMapping</td>
+<td style="text-align:center">HttpRequestHandlerAdapter</td>
+<td style="text-align:center">实现HttpRequestHandler的接口类</td>
+</tr>
+<tr>
+<td style="text-align:center">BeanNameUrlHandlerMapping<br>SimpleUrlHandlerMapping</td>
+<td style="text-align:center">SimpleServletHandlerAdapter</td>
+<td style="text-align:center">实现Servlet的接口类</td>
+</tr>
+<tr>
+<td style="text-align:center">RequestMappingHandlerMapping</td>
+<td style="text-align:center">RequestMappingHandlerAdapter</td>
+<td style="text-align:center">HandlerMethod使用@Controller注解类种，@RequestMapping等注解的方法</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="ViewResoler-视图解析器-1"><a href="#ViewResoler-视图解析器-1" class="headerlink" title="ViewResoler(视图解析器)"></a>ViewResoler(视图解析器)</h4><p>常见的视图解析器有以下几种</p>
+<ul>
+<li><p>AbstractCachingViewResolver:</p>
+<p>带缓存功能的ViewResolver接口的基础实现抽线类，将解析过的视图进行缓存，下次再次解析的时候就会在缓存中直接寻找该视图</p>
+</li>
+<li><p>InternalResourceViewResolver:</p>
+<p>根据视图名字返回InternalResourceView视图的视图，继承自AbstractCachingViewResolver</p>
+</li>
+<li><p>FreeMarkerViewResolver:</p>
+<p>返回FreeMarkerView</p>
+</li>
+<li><p>BeanNameViewResolver:</p>
+<p>根据逻辑视图名称去匹配定义好的视图Bean对象，BeanNameViewResolver不会对视图进行缓存</p>
+</li>
+</ul>
+<h2 id="SpringMVC的注解实现"><a href="#SpringMVC的注解实现" class="headerlink" title="SpringMVC的注解实现"></a>SpringMVC的注解实现</h2><p>访问</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http://localhost:8080/mvcHello</span></span><br></pre></td></tr></table></figure>
+<p>文件目录结构</p>
+<p><img src="/2021/04/25/SpringMVC/spring-mvc02.png" alt="spring-mvc02"></p>
+<p>jsp文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">hello.jsp</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;%--文档类型--%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;%--字符编码元信息--%&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">        &lt;%--标题--%&gt;</span><br><span class="line">        &lt;title&gt;User View&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        Hello:&lt;br&gt;</span><br><span class="line">        &lt;%--获取模型数据的user对象的id属性值--%&gt;</span><br><span class="line">        用户Id:$&#123;user.id&#125;&lt;br&gt;</span><br><span class="line">        &lt;%--获取模型数据的user对象的name属性值--%&gt;</span><br><span class="line">        用户名:$&#123;user.name&#125;&lt;br&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>application.xml配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       https://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">       https://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--启用注解--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.liu&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--自动注入--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--自动过滤--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--视图前缀--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;prefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;/WEB-INF/view/&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--视图后缀--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suffix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;.jsp&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>web.xml文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">version</span>=<span class="string">&quot;4.0&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Servlet配置--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--中央控制器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--Servler名字--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--参数名--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--参数值--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:application.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--容器启动时加载--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Servlet与请求URL映射--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--接收请求--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--Servlet名字--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--匹配URL路径--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>java文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MVCHelloController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/mvcHello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//设置视图名</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">        <span class="comment">// 请求用户数据</span></span><br><span class="line">        ApplicationContext context  = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;application.xml&quot;</span>);</span><br><span class="line">        UserService userService = context.getBean(<span class="string">&quot;userServiceImp&quot;</span>,UserService.class);</span><br><span class="line">        User user = userService.get();</span><br><span class="line">        <span class="comment">//将User对象添加到模型数据中</span></span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;user&quot;</span>,user);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">补充代码</span><br><span class="line">User对象</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User服务接口</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User服务接口实现</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImp</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">&quot;User 1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/25/Spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2536,195 +2797,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/29/%E5%88%A9%E7%94%A8hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/sad.jpg">
-      <meta itemprop="name" content="Mr. Liu">
-      <meta itemprop="description" content="good good study ,day day up">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小刘的技术栈">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/29/%E5%88%A9%E7%94%A8hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">利用hexo+github搭建个人博客（一）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-29 20:47:03" itemprop="dateCreated datePublished" datetime="2020-09-29T20:47:03+08:00">2020-09-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-30 14:25:43" itemprop="dateModified" datetime="2020-09-30T14:25:43+08:00">2020-09-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9A%8F%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">随记</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="利用hexo-github搭建个人博客（一）"><a href="#利用hexo-github搭建个人博客（一）" class="headerlink" title="利用hexo+github搭建个人博客（一）"></a>利用hexo+github搭建个人博客（一）</h1><p>一直苦恼没有一个合适的地方分享自己的想法，在某一天突然想搭建一个个人博客，在网上搜了搜觉得hexo是一个不错的选择，于是有了这一篇文章。该文章写于2020.9.29，仅供参考学习，所有操作是在windows10系统中进行，请读者核对相关细节，希望可以帮助到更多的人。</p>
-<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h2><p>主要是hexo的依赖环境和创建github仓库</p>
-<h3 id="搭建hexo环境"><a href="#搭建hexo环境" class="headerlink" title="搭建hexo环境"></a>搭建hexo环境</h3><p>阅读能力较强的同学可以直接跳转hexo官方文档进行搭建，hexo官方链接：<a target="_blank" rel="noopener" href="https://hexo.bootcss.com/。">https://hexo.bootcss.com/。</a></p>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>hexo是一个快速、简洁且高效的博客框架，支持 Markdown，方便部署，并且有很强大的插件可用，帮助你丰富博客。</p>
-<h4 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h4><p>hexo基于node.js，在安装hexo之前要确保自己的电脑安装了node.js，本次安装是在windows10中进行的，需要在官网中下载windows的node.js，进行手动安装。node.js下载链接：<a target="_blank" rel="noopener" href="https://nodejs.org/en/。">https://nodejs.org/en/。</a></p>
-<p>node.js安装结束后进行检查，同时按下win+R进入命令行界面输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm -v</span><br></pre></td></tr></table></figure>
-<p>显示当前版本号说明安装成功。</p>
-<p>相关教程很多，不再赘述，可以在官网，菜鸟教程，CSDN和博客园等平台进行学习。</p>
-<h4 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h4><p>git是一个开源的分布式版本控制系统，用于项目控制管理。安装它主要是利用git将搭建好的网站推到 github上，然后通过github提供的github pages静态网页的免费站点进行访问。本次安装是在windows10中进行的，需要在官网中下载windows的git，进行手动安装。git下载链接：<a target="_blank" rel="noopener" href="https://git-scm.com/。">https://git-scm.com/。</a></p>
-<p>相关教程很多，官方也有中文安装说明，不再赘述，可以在官网，菜鸟教程，CSDN和博客园等平台进行学习。</p>
-<h3 id="创建github仓库"><a href="#创建github仓库" class="headerlink" title="创建github仓库"></a>创建github仓库</h3><h4 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h4><p>github不用多说，全球最牛的代码托管网站和最大的社交编程网站，程序员的 天堂，只有你想不到的，没有它做不到的。</p>
-<h4 id="创建github账号"><a href="#创建github账号" class="headerlink" title="创建github账号"></a>创建github账号</h4><p>github官方链接：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a></p>
-<h4 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h4><p>找到repositories，新建仓库，仓库的名字命名为(便于识别):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.github.io</span><br></pre></td></tr></table></figure>
-<p>这里的name为github的用户名</p>
-<h4 id="建立SSH链接"><a href="#建立SSH链接" class="headerlink" title="建立SSH链接"></a>建立SSH链接</h4><p>之前已经安装了git，windows桌面，点击鼠标右键，进入git bash，输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;name&quot;</span><br><span class="line">$ git config --global user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
-<p>这里的name是github的用户名，email是github的邮箱。</p>
-<p>检查进行确认</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name</span><br><span class="line">$ git config user.email</span><br></pre></td></tr></table></figure>
-<p>创建SSH，一直回车就可以了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;email&quot;</span><br></pre></td></tr></table></figure>
-<p>会生成两个文件id_rsa和id_rsa.pub，windeows下默认路径为C:\Users\用户名\.ssh</p>
-<p>id_rsa为本机密匙，不要轻易泄露</p>
-<p>id_rsa.pub为公用密匙，可以给别人，别人通过ssh与主机建立链接</p>
-<p>点击github中的setting，点击SSH and GPG keys，点击new SSH key，将id_rsa.pubub里面的内容复制进去，创建。至此，你的电脑就与github建立了SSH链接，可以通过部署命令上传文件。</p>
-<p>检查进行确认</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>   这里的git@github.com为之前的github邮箱</p>
-<h2 id="2-搭建博客"><a href="#2-搭建博客" class="headerlink" title="2.搭建博客"></a>2.搭建博客</h2><p>在搭建了hexo需要的环境之后，我们可以安装hexo，并搭建一个hello Hexo博客来进行测试。</p>
-<h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><p>选取一个目录创建Blog文件夹，这里选用的是D盘根目录</p>
-<p>两种方法安装</p>
-<p>windows命令行</p>
-<p>同时按下win+R进入命令行界面输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;         &#x2F;&#x2F;进入根目录</span><br><span class="line">$ d:           &#x2F;&#x2F;进入d盘</span><br><span class="line">$ cd Blog      &#x2F;&#x2F;进入Blog文件夹</span><br><span class="line">$ npm install -g hexo-cli    &#x2F;&#x2F;进行hexo安装</span><br></pre></td></tr></table></figure>
-<p>检查进行确认</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo v</span><br></pre></td></tr></table></figure>
-<p>git bash命令行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd &#x2F;         &#x2F;&#x2F;进入根目录</span><br><span class="line">$ cd d&#x2F;Blog      &#x2F;&#x2F;进入Blog文件夹</span><br><span class="line">$ npm install -g hexo-cli    &#x2F;&#x2F;进行hexo安装</span><br></pre></td></tr></table></figure>
-<p>检查进行确认</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo v</span><br></pre></td></tr></table></figure>
-<h3 id="hexo常用命令介绍"><a href="#hexo常用命令介绍" class="headerlink" title="hexo常用命令介绍"></a>hexo常用命令介绍</h3><p>hexo命令很多，根据运行文件夹位置可分为初始化命令和其他命令，完整的命令解析请自行查阅文档，hexo官方链接：<a target="_blank" rel="noopener" href="https://hexo.bootcss.com/">https://hexo.bootcss.com/</a></p>
-<h4 id="初始化命令"><a href="#初始化命令" class="headerlink" title="初始化命令"></a>初始化命令</h4><p>这部分命令是运行在hexo安装文件夹中的，按上述安装位置为D:\Blog，需要通过windos命令行或者git bash命令行进入该文件夹。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init blog</span><br></pre></td></tr></table></figure>
-<p>这里的blog可以为任意名称，会生成一个基本的博客架构</p>
-<p>进入该文件夹，有些主要文件夹和文件要说明</p>
-<ul>
-<li>node_modules: 依赖包</li>
-<li>public：存放生成的页面</li>
-<li>scaffolds：生成文章的一些模板</li>
-<li>source：用来存放你的文章（主要在_posts文件夹中）或者一些补充文件</li>
-<li>themes：主题</li>
-<li>_config.yml: 博客的配置文件</li>
-</ul>
-<h4 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h4><p>这部分命令是运行在hexo的初始化命令生成的博客文件夹中，按上述安装位置为D:\Blog\blog，需要通过windos命令行或者git bash命令行进入该文件夹。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>作用</th>
-<th>命令</th>
-<th>简写</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>清理缓存（public文件夹）</td>
-<td>hexo clean</td>
-<td>hexo cl</td>
-</tr>
-<tr>
-<td>生成静态文件</td>
-<td>hexo generate</td>
-<td>hexo g</td>
-</tr>
-<tr>
-<td>启动本地服务（在本地访问）</td>
-<td>hexo server</td>
-<td>hexo s</td>
-</tr>
-<tr>
-<td>部署服务（在站点访问）</td>
-<td>hexo deploy</td>
-<td>hexo d</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="hexo博客本地访问"><a href="#hexo博客本地访问" class="headerlink" title="hexo博客本地访问"></a>hexo博客本地访问</h3><p>一般启动本地的顺序是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>启用本地服务后根据提示服务端口访问，一般为：<a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a></p>
-<h3 id="hexo博客通过github访问"><a href="#hexo博客通过github访问" class="headerlink" title="hexo博客通过github访问"></a>hexo博客通过github访问</h3><p>通过github的github pages访问需要进行配置更改</p>
-<p>按上述步骤应打开：D:\Blog\blog中的_config.yml文件对下面配置进行更改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">103   # Deployment</span><br><span class="line">104   ## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;one-command-deployment</span><br><span class="line">105   deploy:</span><br><span class="line">106     type: git</span><br><span class="line">107     repo: https:&#x2F;&#x2F;github.com&#x2F;name&#x2F;name.github.io</span><br><span class="line">108     branch: master</span><br></pre></td></tr></table></figure>
-<p>这里两个name都为github的用户名</p>
-<p>一般部署服务的顺序是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>部署服务后，需检查是否上传成功，再通过github站点访问，一般为：<a target="_blank" rel="noopener" href="https://name.github.io/，其中name为github的用户名。">https://name.github.io/，其中name为github的用户名。</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里基本上就搭建好了一个属于自己的博客了，可能有点丑，后续的内容针对hexo的主题next和hexo的一些配置文件进行介绍说明，来美化博客，希望自己可以把这个博客坚持下去。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -2790,7 +2867,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
