@@ -186,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-28 11:25:06" itemprop="dateModified" datetime="2021-04-28T11:25:06+08:00">2021-04-28</time>
+                <time title="修改时间：2021-04-28 16:09:04" itemprop="dateModified" datetime="2021-04-28T16:09:04+08:00">2021-04-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,8 +246,7 @@
 <p>可以看出核心还是MVC</p>
 <p>。。。不会有人看不出吧</p>
 <h2 id="SpringMVC的简单实现"><a href="#SpringMVC的简单实现" class="headerlink" title="SpringMVC的简单实现"></a>SpringMVC的简单实现</h2><p>这个要特别注意Tomcat的版本</p>
-<p>尽量选</p>
-<p><a href="[Apache Tomcat 安装与配置教程 - 李培冠 - 博客园 (cnblogs.com">Tomcat 9</a>](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lpgit/p/10929507.html">https://www.cnblogs.com/lpgit/p/10929507.html</a>))</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lpgit/p/10929507.html">Tomcat9</a></p>
 <p>。。。千万不要选Tomcat 10，好多包都不不匹配，都是泪</p>
 <p>先是配置文件</p>
 <p>导入依赖</p>
@@ -398,16 +397,113 @@
 <p>java文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MVCHelloController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/mvcHello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//设置视图名</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">        <span class="comment">// 请求用户数据</span></span><br><span class="line">        ApplicationContext context  = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;application.xml&quot;</span>);</span><br><span class="line">        UserService userService = context.getBean(<span class="string">&quot;userServiceImp&quot;</span>,UserService.class);</span><br><span class="line">        User user = userService.get();</span><br><span class="line">        <span class="comment">//将User对象添加到模型数据中</span></span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;user&quot;</span>,user);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">补充代码</span><br><span class="line">User对象</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User服务接口</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User服务接口实现</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImp</span> <span class="keyword">implements</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">&quot;User 1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="注解汇总表"><a href="#注解汇总表" class="headerlink" title="注解汇总表"></a>注解汇总表</h2><ul>
-<li><p>组件</p>
-<p>|    注解     | 应用的目标 |    功能    |<br>| :————-: | :————: | :————: |<br>| @Conttoller |     类     | 后端控制器 |<br>|  @Service   |     类     | 服务类组件 |</p>
-</li>
-<li><p>请求映射</p>
-<p>|      注解       | 应用的目标 |            功能             |<br>| :——————-: | :————: | :————————————-: |<br>| @RequsetMapping |  类或方法  |        通用请求映射         |<br>|   @GetMapping   |  类或方法  |    GET请求映射，获取数据    |<br>|  @PostMapping   |  类或方法  |   POST请求映射，创建数据    |<br>|   @PutMapping   |  类或方法  |    PUT请求映射，修改数据    |<br>|  @PatchMaping   |  类或方法  | PATCH请求映射，修改部分数据 |<br>| @DeleteMapping  |  类或方法  |  DELETE请求映射，删除数据   |</p>
-</li>
-<li><p>参数匹配</p>
-<p>|      注解       |   应用的目标   |   功能   |<br>| :——————-: | :——————: | :———: |<br>|  @RequestParam  |    方法参数    | 请求路径 |<br>|  @PathVariable  |    方法参数    | 路径变量 |<br>| @MatrixVariable |    方法参数    | 矩阵变量 |<br>| @ModelAttribute | 方法或方法参数 | 模型属性 |</p>
-</li>
+<li>组件</li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">注解</th>
+<th style="text-align:center">应用的目标</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@Conttoller</td>
+<td style="text-align:center">类</td>
+<td style="text-align:center">后端控制器</td>
+</tr>
+<tr>
+<td style="text-align:center">@Service</td>
+<td style="text-align:center">类</td>
+<td style="text-align:center">服务类组件</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>请求映射</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">注解</th>
+<th style="text-align:center">应用的目标</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@RequsetMapping</td>
+<td style="text-align:center">类或方法</td>
+<td style="text-align:center">通用请求映射</td>
+</tr>
+<tr>
+<td style="text-align:center">@GetMapping</td>
+<td style="text-align:center">类或方法</td>
+<td style="text-align:center">GET请求映射，获取数据</td>
+</tr>
+<tr>
+<td style="text-align:center">@PostMapping</td>
+<td style="text-align:center">类或方法</td>
+<td style="text-align:center">POST请求映射，创建数据</td>
+</tr>
+<tr>
+<td style="text-align:center">@PutMapping</td>
+<td style="text-align:center">类或方法</td>
+<td style="text-align:center">PUT请求映射，修改数据</td>
+</tr>
+<tr>
+<td style="text-align:center">@PatchMaping</td>
+<td style="text-align:center">类或方法</td>
+<td style="text-align:center">PATCH请求映射，修改部分数据</td>
+</tr>
+<tr>
+<td style="text-align:center">@DeleteMapping</td>
+<td style="text-align:center">类或方法</td>
+<td style="text-align:center">DELETE请求映射，删除数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>参数匹配</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">注解</th>
+<th style="text-align:center">应用的目标</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@RequestParam</td>
+<td style="text-align:center">方法参数</td>
+<td style="text-align:center">请求路径</td>
+</tr>
+<tr>
+<td style="text-align:center">@PathVariable</td>
+<td style="text-align:center">方法参数</td>
+<td style="text-align:center">路径变量</td>
+</tr>
+<tr>
+<td style="text-align:center">@MatrixVariable</td>
+<td style="text-align:center">方法参数</td>
+<td style="text-align:center">矩阵变量</td>
+</tr>
+<tr>
+<td style="text-align:center">@ModelAttribute</td>
+<td style="text-align:center">方法或方法参数</td>
+<td style="text-align:center">模型属性</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -450,10 +546,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-25 20:37:28 / 修改时间：20:41:33" itemprop="dateCreated datePublished" datetime="2021-04-25T20:37:28+08:00">2021-04-25</time>
+              <time title="创建时间：2021-04-25 20:37:28" itemprop="dateCreated datePublished" datetime="2021-04-25T20:37:28+08:00">2021-04-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-28 16:01:30" itemprop="dateModified" datetime="2021-04-28T16:01:30+08:00">2021-04-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -681,16 +783,138 @@
 <p>是不是很神奇，说实话，这样子还是很麻烦</p>
 <p>可以进一步进行优化</p>
 <h3 id="Spring容器注解汇总与说明"><a href="#Spring容器注解汇总与说明" class="headerlink" title="Spring容器注解汇总与说明"></a>Spring容器注解汇总与说明</h3><ul>
-<li><p>组件</p>
-<p>| 注解           | 归属     | 功能               |<br>| ——————— | ———— | ————————— |<br>| @Named         | Java标准 | 组件注册           |<br>| @Component     | Spring   | 组件注册(类)       |<br>| @Bean          | Spring   | 组件注册(方法)     |<br>| @Scope         | Spring   | 组件作用域         |<br>| @PostConstruct | Java标准 | 组件初始化方法回调 |<br>| @PreDestroy    | Java标准 | 组件销毁方法回调   |</p>
-</li>
-<li><p>依赖注入</p>
-<p>| 注解       | 归属             | 功能                                          |<br>| ————— | ———————— | ——————————————————————- |<br>| @Resource  | Java标准         | 依赖注入                                      |<br>| @Inject    | Java标准         | 依赖注入                                      |<br>| @Required  | Spring           | 依赖检查                                      |<br>| @Autowired | Spring           | 依赖自动装配                                  |<br>| @Nullable  | Java标准或Spring | 非空检查                                      |<br>| @Primary   | Spring           | 依赖注入Bean优先级，结合@Component和@Bean使用 |<br>| @Qualifler | Spring           | 依赖注入限定符，结合@Autowired使用            |<br>| @Order     | Spring           | 组件注入顺序，结合@Component和@Bean使用       |</p>
-</li>
-<li><p>配置</p>
-<p>| 注解           | 归属   | 功能           |<br>| ——————— | ——— | ——————— |<br>| @Configuration | Spring | 配置类注解     |<br>| @ComponentScan | Spring | 组件扫描注解   |<br>| @Import        | Spring | 导入其他配置类 |</p>
-</li>
+<li>组件</li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>归属</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Named</td>
+<td>Java标准</td>
+<td>组件注册</td>
+</tr>
+<tr>
+<td>@Component</td>
+<td>Spring</td>
+<td>组件注册(类)</td>
+</tr>
+<tr>
+<td>@Bean</td>
+<td>Spring</td>
+<td>组件注册(方法)</td>
+</tr>
+<tr>
+<td>@Scope</td>
+<td>Spring</td>
+<td>组件作用域</td>
+</tr>
+<tr>
+<td>@PostConstruct</td>
+<td>Java标准</td>
+<td>组件初始化方法回调</td>
+</tr>
+<tr>
+<td>@PreDestroy</td>
+<td>Java标准</td>
+<td>组件销毁方法回调</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>依赖注入</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>归属</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Resource</td>
+<td>Java标准</td>
+<td>依赖注入</td>
+</tr>
+<tr>
+<td>@Inject</td>
+<td>Java标准</td>
+<td>依赖注入</td>
+</tr>
+<tr>
+<td>@Required</td>
+<td>Spring</td>
+<td>依赖检查</td>
+</tr>
+<tr>
+<td>@Autowired</td>
+<td>Spring</td>
+<td>依赖自动装配</td>
+</tr>
+<tr>
+<td>@Nullable</td>
+<td>Java标准或Spring</td>
+<td>非空检查</td>
+</tr>
+<tr>
+<td>@Primary</td>
+<td>Spring</td>
+<td>依赖注入Bean优先级，结合@Component和@Bean使用</td>
+</tr>
+<tr>
+<td>@Qualifler</td>
+<td>Spring</td>
+<td>依赖注入限定符，结合@Autowired使用</td>
+</tr>
+<tr>
+<td>@Order</td>
+<td>Spring</td>
+<td>组件注入顺序，结合@Component和@Bean使用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>配置</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>归属</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Configuration</td>
+<td>Spring</td>
+<td>配置类注解</td>
+</tr>
+<tr>
+<td>@ComponentScan</td>
+<td>Spring</td>
+<td>组件扫描注解</td>
+</tr>
+<tr>
+<td>@Import</td>
+<td>Spring</td>
+<td>导入其他配置类</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><h3 id="AOP理论"><a href="#AOP理论" class="headerlink" title="AOP理论"></a>AOP理论</h3><p>切面</p>
 <p>AOP是在不修改源代码的前提下添加功能的一种编程思想，目的是降低系统业务逻辑之间的耦合性，提高代码的重用性和开发的效率性。</p>
 <p>一些基本的术语</p>
