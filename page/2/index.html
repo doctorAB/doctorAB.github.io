@@ -123,7 +123,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
   </ul>
@@ -151,6 +151,383 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/18/hihocoder%EF%BC%9A1159%E6%89%91%E5%85%8B%E7%89%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sad.jpg">
+      <meta itemprop="name" content="Mr. Liu">
+      <meta itemprop="description" content="good good study ,day day up">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小刘的技术栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/18/hihocoder%EF%BC%9A1159%E6%89%91%E5%85%8B%E7%89%8C/" class="post-title-link" itemprop="url">hihocoder：1159扑克牌</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-18 23:53:29" itemprop="dateCreated datePublished" datetime="2020-10-18T23:53:29+08:00">2020-10-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-19 00:18:31" itemprop="dateModified" datetime="2020-10-19T00:18:31+08:00">2020-10-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">随记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="hihocoder：1159扑克牌"><a href="#hihocoder：1159扑克牌" class="headerlink" title="hihocoder：1159扑克牌"></a>hihocoder：1159扑克牌</h1><p>作业要求做一个算法题，选取了这个感觉有点意思，在这里整理说明，记录下自己的学习过程，只提供思路，相关代码请自行尝试编写，多动手。</p>
+<p>来源：hihocoder</p>
+<p>链接：<a target="_blank" rel="noopener" href="http://hihocoder.com/problemset/problem/1159">http://hihocoder.com/problemset/problem/1159</a></p>
+<h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>一副不含王的扑克牌由52张牌组成，由红桃、黑桃、梅花、方块4组牌组成，每组13张不同的面值。现在给定52张牌中的若干张，请计算将它们排成一列，相邻的牌面值不同的方案数。</p>
+<p>牌的表示方法为XY，其中X为面值，为2、3、4、5、6、7、8、9、T、J、Q、K、A中的一个。Y为花色，为S、H、D、C中的一个。如2S、2H、TD等。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行为一个整数T，为数据组数。</p>
+<p>之后每组数据占一行。这一行首先包含一个整数N，表示给定的牌的张数，接下来N个由空格分隔的字符串，每个字符串长度为2，表示一张牌。每组数据中的扑克牌各不相同。</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>对于每组数据输出一行，形如”Case #X: Y”。X为数据组数，从1开始。Y为可能的方案数，由于答案可能很大，请输出模264之后的值。</p>
+<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><p>1 ≤ T ≤ 20000</p>
+<p>小数据</p>
+<p>1 ≤ N ≤ 5</p>
+<p>大数据</p>
+<p>1 ≤ N ≤ 52</p>
+<p>样例输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1 TC</span><br><span class="line">2 TC TS</span><br><span class="line">5 2C AD AC JC JH</span><br><span class="line">4 AC KC QC JC</span><br><span class="line">6 AC AD AS JC JD KD</span><br></pre></td></tr></table></figure>
+<p>样例输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Case #1: 1</span><br><span class="line">Case #2: 0</span><br><span class="line">Case #3: 48</span><br><span class="line">Case #4: 24</span><br><span class="line">Case #5: 120</span><br></pre></td></tr></table></figure>
+<h2 id="方法一（多维DP）"><a href="#方法一（多维DP）" class="headerlink" title="方法一（多维DP）"></a>方法一（多维DP）</h2><p>将扑克牌一张一张的拍，问题转换成</p>
+<p>总共有 n 张牌，已经排列了一些，还剩下 m 张未排列。问剩下的这 m 张牌（接着已经排列好的那些牌）还有多少种排列方案。</p>
+<p>这样在每次排列时我们就只需考虑剩下等待的扑克牌和为避免重复已经排好的扑克牌的最后一张，即在每次排列时将扑克牌分为两部分：</p>
+<p>“剩余等待的扑克牌”,”已经排好的扑克牌的最后一张”</p>
+<p>这是一个迭代的过程，可以使用这个过程构造状态转移方程式，有了这个思路后，我们要考虑如何记录”剩余等待的扑克牌和”已经排好的扑克牌的最后一张”这两个部分。</p>
+<p>思考一：记录扑克牌点数和扑克牌数量</p>
+<p>将13张不同数字用a1，a2，……a13表示数量，last表示已经排好的扑克牌的最后数字</p>
+<p>“剩余等待的扑克牌” = a1,a2,a3,……a13</p>
+<p>“已经排好的扑克牌的最后一张” = last</p>
+<p>其中0&lt;=an&lt;=4，1&lt;=last&lt;=13</p>
+<p>构造状态转移方程：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\mathrm{DP}[a_1][a_2]……[a_{12}][a_{13}][last]=
+&\delta_{last,1}a_1[a_1-1][a_2]……[a_{12}][a_{13}][1]\\
+&+\delta_{last,2}a_2[a_1][a_2-1]……[a_{12}][a_{13}][2]\\
+&……\\
+&+\delta_{last,13}a_{13}[a_1][a_2]……[a_{12}][a_{13}-1][13]
+\end{align*}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\delta_{i,j}=\begin{cases}0&i = j\\1&i \neq j \end{cases}</script><p>思考二：记录剩余数量不同的扑克牌数和一种扑克牌的剩余数量</p>
+<p>经过思考一，我们不难发现这种方法是比较复杂的，在状态转移方程中我们用到的全部是扑克牌的数量，与种类关系不大，于是改变思路用a1，a2，……a4表示剩余一张扑克牌的数量，剩余两张扑克牌的数量，剩余三张扑克牌的数量和剩余四张扑克牌的数量，last表示已经排好的扑克牌的剩余数量。</p>
+<p>“剩余等待的扑克牌” = a1,a2,a3,a4</p>
+<p>“已经排好的扑克牌的最后一张” = last</p>
+<p>其中0&lt;=an&lt;=13,0&lt;=last&lt;=3</p>
+<p>构造状态转移方程：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\mathrm{DP}[a_1][a_2][a_3][a_4][last] = & (a_1 - \delta_{last,1})~\mathrm{DP}[a_1 - 1][a_2][a_3][a_4][0] \\
+& + 2~(a_2 - \delta_{last, 2})~\mathrm{DP}[a_1 + 1][a_2 - 1][a_3][a_4][1] \\
+& + 3~(a_3 - \delta_{last,3})~\mathrm{DP}[a_1][a_2 + 1][a_3 - 1][a_4][2] \\
+& + 4a_4\mathrm{DP}[a_1][a_2][a_3 + 1][a_4 -1][3]
+\end{align*}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\delta_{i,j}=\begin{cases}1&i = j\\0&i \neq j \end{cases}</script><h2 id="方法二（二维DP）"><a href="#方法二（二维DP）" class="headerlink" title="方法二（二维DP）"></a>方法二（二维DP）</h2><p>题目对花色无要求，所以干脆不考虑花色了，问题转换成</p>
+<p>有n个字符，使用插入法进行排列</p>
+<p>采用每次将所有相同字符插入当前字符串这种方式来排列，即</p>
+<p>aabbbbcc</p>
+<p>每次插入时是插入aa或者bbbb或者cc</p>
+<p>为满足题目要求，每张扑克牌不允许与其左右两边的数字相同，引入插入位和重复位的概念</p>
+<p>插入位指字符串中可以插入的地方，如</p>
+<p>aaaa</p>
+<p>有5个插入位</p>
+<p>~a~a~a~a~</p>
+<p>重复位指字符中两个连续的相同字符后一个字符前的插入位，如</p>
+<p>aaaa</p>
+<p>有3个重复位，分别是第二，第三，第四个插入位</p>
+<p>~a(~)a~a~a~，~a~a(~)a~a~，~a~a~a(~)a~</p>
+<p>通过插入字符到重复为可以减少重复位，如</p>
+<p>aaaa插入b得</p>
+<p>abaaa</p>
+<p>此时重复位数量由3减少为2</p>
+<p>不插入到重复位则不改变重复位的数量</p>
+<p>但是我们选取的插入方式是将多个相同的字符同时插入，会有多种情况，有可能会增加重复位，如</p>
+<p>aaaa插入bb得</p>
+<p>abbaa重复位数量不变</p>
+<p>ababaa重复位数量减少</p>
+<p>aaaabb重复位数量增加</p>
+<p>所以我们要对每一次插入进行分情况考虑，如</p>
+<p>插入bbb</p>
+<p>情况一：分为一个组，bbb</p>
+<p>情况二：分为两个组，b和bb</p>
+<p>情况三：分为三个组，b，b和b</p>
+<p>每种情况的每种分组选择一部分插入重复位，一部分插入到非重复位</p>
+<p>最终目标就是将所有的字符插入且不存在重复位</p>
+<p>然后统计这个的数量</p>
+<p>到此我们就清楚了这整个过程，同样用一种方式记录这些排列</p>
+<p>这里用插入前n种字符和此时的重复位数量记录排列</p>
+<p>“已经插入的字符”,”重复位数量”</p>
+<p>用i表示插入的第i种字符，用j表示插入第i种字符此时的重复位数量</p>
+<p>“已经插入的字符” = “i”</p>
+<p>“重复位数量” = “j”</p>
+<p>构建状态转移方程式</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\mathrm{DP}[i+1][j-x+c_{i+1}-k] = & C_j^x~C_{s_i+1-j}^{k-x}~C_{c_{i+1}-1}^{k-1}~\mathrm{DP}[i][j]\\
+\end{align*}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&k表示将插入的相同字符串划分为多少组\\
+&x表示k组中有多少组插入重复位\\
+&c_{i+1}表示插入的第i+1种字符有多少个\\
+&s_{i}表示插入前i种字符后一共插入了多少个字符\\
+&C_j^x表示在j个重复位中选取x个进行插入有多少种情况\\
+&C_{s_i+1-j}^{k-x}中\\
+&{s_i}+1-j表示在s_i个字符中有多少非重复位\\
+&k-x表示k组中有多少组插入了非重复位\\
+&整体指在{s_i}+1-j个非重复位中选取k-x个非重复位进行插入有多少种情况\\
+&C_{c_{i+1}-1}^{k-1}表示对插入的第c_{i+1}种字符可以进行多少种划分
+\end{align*}</script><p>最后强调一点最后的得到的是排列，因为花色不同，所以需要对每种扑克牌进行组合</p>
+<script type="math/tex; mode=display">
+\mathrm{DP}[13][0] \times c_1! \times c_2! \times …… c_{13}!</script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/07/LeetCode%E7%83%AD%E9%97%A8%E4%B8%80%E7%99%BE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/sad.jpg">
+      <meta itemprop="name" content="Mr. Liu">
+      <meta itemprop="description" content="good good study ,day day up">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小刘的技术栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/07/LeetCode%E7%83%AD%E9%97%A8%E4%B8%80%E7%99%BE%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">LeetCode热门一百题（一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-07 01:09:23" itemprop="dateCreated datePublished" datetime="2020-10-07T01:09:23+08:00">2020-10-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-18 23:51:25" itemprop="dateModified" datetime="2020-10-18T23:51:25+08:00">2020-10-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LeetCode热门一百题（一）"><a href="#LeetCode热门一百题（一）" class="headerlink" title="LeetCode热门一百题（一）"></a>LeetCode热门一百题（一）</h1><p>本开篇是用来整理自己刷LeetCode的过程和一些算法的整理，虽然感觉自己离算法岗很远，但觉得一个合格的程序员需要对数据结构和算法复杂度有一定的了解，这个系列是从LeetCode的热门一百题从简单到困难的学习，大致的编写过程为每3个简单题为一篇，2个中等为一篇，2个困难为一篇，使用语言以C和Java为主，每个题大致解析三个部分：思路，详解和代码。预计1月份之前更新完。我也不太清楚能不能直接把题目拿过来，目前先出示链接再分析。</p>
+<h2 id="合并二叉树（简单）"><a href="#合并二叉树（简单）" class="headerlink" title="合并二叉树（简单）"></a>合并二叉树（简单）</h2><p>先附上题目</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-binary-trees">https://leetcode-cn.com/problems/merge-two-binary-trees</a></p>
+<p>给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。</p>
+<p>你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。</p>
+<p>示例</p>
+<p>输入: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Tree 1                   Tree 2                  </span><br><span class="line">     1                         2                             </span><br><span class="line">    &#x2F; \                       &#x2F; \                            </span><br><span class="line">   3   2                     1   3                        </span><br><span class="line">  &#x2F;                           \    \                      </span><br><span class="line"> 5                             4    7          </span><br></pre></td></tr></table></figure>
+<p>​        </p>
+<p>输出:<br>合并后的树:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    3</span><br><span class="line">   &#x2F; \</span><br><span class="line">  4   5</span><br><span class="line"> &#x2F; \    \ </span><br><span class="line">5   4    7</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>问题其实很简单，就是遍历两二叉树，对相同位置的节点进行处理。处理的规则是：</p>
+<ul>
+<li>相同位置节点都不为空，取两节点之和</li>
+<li>相同位置节点有一个为空，一个不为空，取非空节点</li>
+<li>相同位置节点都为空，取空节点</li>
+</ul>
+<h3 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h3><p>到这里我们就可以知道题目的难点是如何遍历，关于树的遍历大致有几种方法：先序遍历，中序遍历，后序遍历，深度遍历，广度遍历（后续我会专门开一篇来实现这些遍历的递归和非递归）。我通过使用这些常规的遍历方法，很快意识到了两个重点：</p>
+<ul>
+<li>同步遍历的相对位置要保证</li>
+<li>对空节点的遍历需要分类处理</li>
+</ul>
+<p>二叉树的先序，中序和后序遍历思想其实就是深度遍历，不做赘述，主要就深度遍历和广度遍历谈谈具体思路。</p>
+<p>深度遍历：</p>
+<p>简单的说就是递归，一次检查两个相同位置的节点</p>
+<ul>
+<li>两个都为空，返回空</li>
+<li>一个为空，返回非空</li>
+<li>两个都不为空，创建新节点，值为两者之和</li>
+</ul>
+<p>广度遍历：</p>
+<p>难点就是同步遍历，这里建议使用一个队列同时进两个或同时出两个，以此来达到访问相同位置</p>
+<ul>
+<li>同时出两个tp1和tp2</li>
+<li>tp1左节点为空，tp1左节点指向tp2左节点</li>
+<li>tp1左节点不为空，tp2左节点为空，不做处理</li>
+<li>tp1左节点不为空，tp2左节点不为空，将两个左节点进队列</li>
+<li>对tp1的右节点进行同样的处理，直到队列为空</li>
+</ul>
+<h3 id="代码（C）"><a href="#代码（C）" class="headerlink" title="代码（C）"></a>代码（C）</h3><h4 id="深度遍历"><a href="#深度遍历" class="headerlink" title="深度遍历"></a>深度遍历</h4><p>合并到新的树上</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *right;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function">struct TreeNode* <span class="title">mergeTrees</span><span class="params">(struct TreeNode* t1, struct TreeNode* t2)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*t1为空*/</span></span><br><span class="line">    <span class="keyword">if</span>(t1 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> t2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*t2为空*/</span></span><br><span class="line">    <span class="keyword">if</span>(t2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> t1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*都不为空*/</span></span><br><span class="line">    <span class="comment">/*创建新节点*/</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">re</span> = (<span class="title">struct</span> <span class="title">TreeNode</span> *)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">TreeNode</span>));</span></span><br><span class="line">    re-&gt;val = t1-&gt;val+t2-&gt;val;</span><br><span class="line">    <span class="comment">/*进行深度遍历*/</span></span><br><span class="line">    re-&gt;left = mergeTrees(t1-&gt;left,t2-&gt;left);</span><br><span class="line">    re-&gt;right = mergeTrees(t1-&gt;right,t2-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>合并到t1上</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *right;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*全部合并到t1中*/</span></span><br><span class="line"><span class="function">struct TreeNode* <span class="title">mergeTrees</span><span class="params">(struct TreeNode* t1, struct TreeNode* t2)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*t1为空*/</span></span><br><span class="line">    <span class="keyword">if</span>(t1 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> t2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*t2为空*/</span></span><br><span class="line">    <span class="keyword">if</span>(t2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> t1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*都不为空*/</span></span><br><span class="line">    <span class="comment">/*合并*/</span></span><br><span class="line">    t1 -&gt;val += t2-&gt;val; </span><br><span class="line">    <span class="comment">/*避免空指针访问*/</span></span><br><span class="line">    <span class="comment">/*深度遍历*/</span></span><br><span class="line">    <span class="keyword">if</span>(t1-&gt;left != <span class="literal">NULL</span> &amp;&amp; t1-&gt;right == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        mergeTrees(t1-&gt;left,t2-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(t1-&gt;left == <span class="literal">NULL</span> &amp;&amp; t1-&gt;right != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        mergeTrees(t1-&gt;right,t2-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(t1-&gt;left != <span class="literal">NULL</span> &amp;&amp; t1-&gt;right != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        mergeTrees(t1-&gt;left,t2-&gt;left);</span><br><span class="line">        mergeTrees(t1-&gt;right,t2-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*进行合并*/</span></span><br><span class="line">    <span class="keyword">if</span>(t1-&gt;left == <span class="literal">NULL</span> &amp;&amp; t2-&gt;left != <span class="literal">NULL</span>)&#123;</span><br><span class="line">       t1-&gt;left = t2-&gt;left;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(t1-&gt;right == <span class="literal">NULL</span> &amp;&amp; t2-&gt;right != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        t1-&gt;right = t2-&gt;right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="广度遍历"><a href="#广度遍历" class="headerlink" title="广度遍历"></a>广度遍历</h4><p>全部合并到t1上</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *right;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*广度遍历*/</span></span><br><span class="line"><span class="comment">/*合并到t1上*/</span></span><br><span class="line"><span class="comment">/*简易队列*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">NodeList</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> first;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">list</span>[10000];</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*初始化*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init</span><span class="params">(struct NodeList *l)</span></span>&#123;</span><br><span class="line">    l-&gt;first = <span class="number">0</span>;</span><br><span class="line">    l-&gt;end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*进队列*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">push</span><span class="params">(struct NodeList *l,struct TreeNode *t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l-&gt;end &lt; <span class="number">10000</span>)&#123;</span><br><span class="line">        l-&gt;<span class="built_in">list</span>[l-&gt;end] = t;</span><br><span class="line">        l-&gt;end++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*出队列*/</span></span><br><span class="line"><span class="function">struct TreeNode *<span class="title">pop</span><span class="params">(struct NodeList *l)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">t</span>;</span></span><br><span class="line">    <span class="keyword">if</span>(l-&gt;first &lt; l-&gt;end)&#123;</span><br><span class="line">        t = l-&gt;<span class="built_in">list</span>[l-&gt;first];</span><br><span class="line">        l-&gt;first++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*队列是否为空*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">empty</span><span class="params">(struct NodeList *l)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l-&gt;first == l-&gt;end)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">struct TreeNode* <span class="title">mergeTrees</span><span class="params">(struct TreeNode* t1, struct TreeNode* t2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t1 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> t2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(t2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> t1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*加入队列*/</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">NodeList</span> <span class="title">l</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">tp1</span> = <span class="title">NULL</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">tp2</span> = <span class="title">NULL</span>;</span></span><br><span class="line">    init(&amp;l);</span><br><span class="line">    push(&amp;l,t1);</span><br><span class="line">    push(&amp;l,t2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*开始遍历队列*/</span></span><br><span class="line">    <span class="keyword">while</span>(empty(&amp;l) != <span class="number">1</span>)&#123;</span><br><span class="line">        i++;</span><br><span class="line">        <span class="comment">/*一起出队列*/</span></span><br><span class="line">        tp1 = pop(&amp;l);</span><br><span class="line">        tp2 = pop(&amp;l);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*合并*/</span></span><br><span class="line">        tp1-&gt;val += tp2-&gt;val;</span><br><span class="line">        <span class="comment">/*判断左右节点*/</span></span><br><span class="line">        <span class="comment">/*如果tp1左节点为空*/</span></span><br><span class="line">        <span class="keyword">if</span>(tp1-&gt;left == <span class="literal">NULL</span>)&#123;</span><br><span class="line">            tp1-&gt;left = tp2-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">/*tp2左不为空不需要操作*/</span></span><br><span class="line">            <span class="keyword">if</span>(tp2-&gt;left != <span class="literal">NULL</span>)&#123;</span><br><span class="line">                <span class="comment">/*不为空加入队列*/</span></span><br><span class="line">                push(&amp;l,tp1-&gt;left);</span><br><span class="line">                push(&amp;l,tp2-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*tp1的右节点为空*/</span></span><br><span class="line">        <span class="keyword">if</span>(tp1-&gt;right == <span class="literal">NULL</span>)&#123;</span><br><span class="line">            tp1-&gt;right = tp2-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">/*同理*/</span></span><br><span class="line">            <span class="keyword">if</span>(tp2-&gt;right != <span class="literal">NULL</span>)&#123;</span><br><span class="line">                <span class="comment">/*不为空加入队列*/</span></span><br><span class="line">                push(&amp;l,tp1-&gt;right);</span><br><span class="line">                push(&amp;l,tp2-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="汉明距离（简单）"><a href="#汉明距离（简单）" class="headerlink" title="汉明距离（简单）"></a>汉明距离（简单）</h2><p>先附上题目</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/hamming-distance">https://leetcode-cn.com/problems/hamming-distance</a></p>
+<p>两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。</p>
+<p>给出两个整数 x 和 y，计算它们之间的汉明距离。</p>
+<p>注意：</p>
+<script type="math/tex; mode=display">
+0\leq x,y <2^{32}</script><p>示例:</p>
+<p>输入: x = 1, y = 4</p>
+<p>输出: 2</p>
+<p>解释:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1   (0 0 0 1)</span><br><span class="line">4   (0 1 0 0)</span><br><span class="line">       ↑   ↑</span><br></pre></td></tr></table></figure>
+<p>上面的箭头指出了对应二进制位不同的位置。</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>题目要求的是二进制计算，理所应当考虑到二进制的计算，包括：或，与，非和异或</p>
+<h3 id="详解-1"><a href="#详解-1" class="headerlink" title="详解"></a>详解</h3><p>要求对应二进制位不同的位置的数目，使用异或，统计结果1的个数</p>
+<p>难点是如何来统计结果1的个数，这里介绍两个方法</p>
+<ul>
+<li>用2位移，二进制乘2会左移除2会右移</li>
+<li>布赖恩·克尼根算法，大致意思就是可以快速过0，如</li>
+</ul>
+<p>100100（2）-1（1） = 100011</p>
+<p>100100（2）&amp; 100011（2） = 100000（2）</p>
+<p>使用这个方法，只用2次就可以找到全部1，用2位移需要6次</p>
+<h3 id="代码（C）-1"><a href="#代码（C）-1" class="headerlink" title="代码（C）"></a>代码（C）</h3><h4 id="用2位移"><a href="#用2位移" class="headerlink" title="用2位移"></a>用2位移</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*按位进行运算*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*进行异或运算，记录1的位数*/</span></span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    t = x^y;</span><br><span class="line">    <span class="comment">/*记录1的个数*/</span></span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(t != <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(t%<span class="number">2</span> == <span class="number">1</span>) num++;</span><br><span class="line">        t = t/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="布赖恩·克尼根算法"><a href="#布赖恩·克尼根算法" class="headerlink" title="布赖恩·克尼根算法"></a>布赖恩·克尼根算法</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*按位进行运算*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*进行异或运算，记录1的位数*/</span></span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    t = x^y;</span><br><span class="line">    <span class="comment">/*记录1的个数*/</span></span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(t)&#123;</span><br><span class="line">        t = t &amp; (t<span class="number">-1</span>);</span><br><span class="line">        num++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="反转二叉树（简单）"><a href="#反转二叉树（简单）" class="headerlink" title="反转二叉树（简单）"></a>反转二叉树（简单）</h2><p>先附上题目</p>
+<p>来源：力扣（LeetCode）</p>
+<p>链接：</p>
+<p>翻转一棵二叉树。</p>
+<p>示例：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/">https://leetcode-cn.com/problems/invert-binary-tree/</a></p>
+<p>输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   &#x2F;   \</span><br><span class="line">  2     7</span><br><span class="line"> &#x2F; \   &#x2F; \</span><br><span class="line">1   3 6   9</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     4</span><br><span class="line">   &#x2F;   \</span><br><span class="line">  7     2</span><br><span class="line"> &#x2F; \   &#x2F; \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>将节点的左右节点交换就行了</p>
+<h3 id="详解-2"><a href="#详解-2" class="headerlink" title="详解"></a>详解</h3><p>与合并二叉树遇到的问题相同，我们需要考虑如何遍历，同样遍历的方式有多种：先序遍历，中序遍历，后序遍历，深度遍历和广度遍历。先序遍历，中序遍历和后序遍历在二叉树中和深度遍历思想类似。但是要注意，这里中序是不行的，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      A</span><br><span class="line">     &#x2F;   </span><br><span class="line">   B   </span><br><span class="line">  &#x2F; </span><br><span class="line">C  </span><br></pre></td></tr></table></figure>
+<p>通过中序遍历交换会变成这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      A</span><br><span class="line">     &#x2F;   </span><br><span class="line">   B   </span><br><span class="line">  &#x2F; </span><br><span class="line">C  </span><br></pre></td></tr></table></figure>
+<p>没有发生改变。</p>
+<p>广度遍历需要判断左右节点，大致的规则是：</p>
+<ul>
+<li>判断其左子树是否为空，不为空就放入队列中</li>
+<li>判断其右子树是否为空，不为空就放入队列中</li>
+</ul>
+<h3 id="代码（C）-2"><a href="#代码（C）-2" class="headerlink" title="代码（C）"></a>代码（C）</h3><h4 id="深度遍历-1"><a href="#深度遍历-1" class="headerlink" title="深度遍历"></a>深度遍历</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *right;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*深度遍历*/</span></span><br><span class="line"><span class="comment">/*先序遍历*/</span></span><br><span class="line"><span class="comment">/*使用递归*/</span></span><br><span class="line"><span class="function">struct TreeNode* <span class="title">invertTree</span><span class="params">(struct TreeNode* root)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">temp</span>;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>)&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*只要不为空就交换*/</span></span><br><span class="line">    temp = root-&gt;left;</span><br><span class="line">    root-&gt;left = root-&gt;right;</span><br><span class="line">    root-&gt;right = temp;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">/*进行递归*/</span></span><br><span class="line">    <span class="keyword">if</span>(root-&gt;left != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        invertTree(root-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(root-&gt;right != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        invertTree(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="广度遍历-1"><a href="#广度遍历-1" class="headerlink" title="广度遍历"></a>广度遍历</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     struct TreeNode *right;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*广度遍历*/</span></span><br><span class="line"><span class="comment">/*简易队列*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">NodeList</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> first;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">list</span>[10000];</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*初始化*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init</span><span class="params">(struct NodeList *l)</span></span>&#123;</span><br><span class="line">    l-&gt;first = <span class="number">0</span>;</span><br><span class="line">    l-&gt;end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*进队列*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">push</span><span class="params">(struct NodeList *l,struct TreeNode *t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l-&gt;end &lt; <span class="number">10000</span>)&#123;</span><br><span class="line">        l-&gt;<span class="built_in">list</span>[l-&gt;end] = t;</span><br><span class="line">        l-&gt;end++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*出队列*/</span></span><br><span class="line"><span class="function">struct TreeNode *<span class="title">pop</span><span class="params">(struct NodeList *l)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">t</span>;</span></span><br><span class="line">    <span class="keyword">if</span>(l-&gt;first &lt; l-&gt;end)&#123;</span><br><span class="line">        t = l-&gt;<span class="built_in">list</span>[l-&gt;first];</span><br><span class="line">        l-&gt;first++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*队列是否为空*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">empty</span><span class="params">(struct NodeList *l)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l-&gt;first == l-&gt;end)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">struct TreeNode* <span class="title">invertTree</span><span class="params">(struct TreeNode* root)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">NodeList</span> <span class="title">l</span>;</span></span><br><span class="line">    init(&amp;l);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">t</span> = <span class="title">NULL</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">temp</span> = <span class="title">NULL</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    push(&amp;l,root);</span><br><span class="line">    <span class="keyword">while</span>(empty(&amp;l) != <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">/*出栈进行交换*/</span></span><br><span class="line">        t = pop(&amp;l);</span><br><span class="line">        temp = t-&gt;left;</span><br><span class="line">        t-&gt;left = t-&gt;right;</span><br><span class="line">        t-&gt;right = temp;</span><br><span class="line">        <span class="comment">/*不为空才进栈*/</span></span><br><span class="line">        <span class="keyword">if</span>(t-&gt;left != <span class="literal">NULL</span>)&#123;</span><br><span class="line">            push(&amp;l,t-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(t-&gt;right != <span class="literal">NULL</span>)&#123;</span><br><span class="line">            push(&amp;l,t-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第一次整理还是很多东西没说清楚，简单题目的时间复杂度其实很好分析，看循环次数，用到递归看递归的深度，一般来说二叉树的递归为其树的高度，到后面中等难度的题目会严格的分析计算，会相应配图，最后一定一定要动手，不然你永远不可能发现你自己有多菜T_T。</p>
+<p>ps：不可随便转载！！！！！！！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -408,14 +785,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -523,6 +900,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
