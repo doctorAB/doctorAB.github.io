@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="vue3.0入门参考笔记">
+  <meta name="description" content="vue3.0入门参考笔记 TypeScriptTypeScript是JS的超集，主要提供了类型系统和对ES6+的支持 安装也很简单 在确保自己的电脑上安装了node.js的情况下使用以下命令即可 1npm install -g typescript TypeScript不能直接使用，需要转化成js之后再使用 命令行转换代码 1tsc .\TypeScript\01.ts 这样做太麻烦了 使用vsc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vueBase">
 <meta property="og:url" content="http://example.com/2021/05/20/vueBase/index.html">
 <meta property="og:site_name" content="小刘的技术栈">
-<meta property="og:description" content="vue3.0入门参考笔记">
+<meta property="og:description" content="vue3.0入门参考笔记 TypeScriptTypeScript是JS的超集，主要提供了类型系统和对ES6+的支持 安装也很简单 在确保自己的电脑上安装了node.js的情况下使用以下命令即可 1npm install -g typescript TypeScript不能直接使用，需要转化成js之后再使用 命令行转换代码 1tsc .\TypeScript\01.ts 这样做太麻烦了 使用vsc">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/05/20/vueBase/file-tree01.png">
 <meta property="article:published_time" content="2021-05-20T12:03:35.000Z">
-<meta property="article:modified_time" content="2021-05-26T01:55:23.011Z">
+<meta property="article:modified_time" content="2021-05-31T13:25:14.851Z">
 <meta property="article:author" content="Mr. Liu">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/05/20/vueBase/file-tree01.png">
 
 <link rel="canonical" href="http://example.com/2021/05/20/vueBase/">
 
@@ -188,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-26 09:55:23" itemprop="dateModified" datetime="2021-05-26T09:55:23+08:00">2021-05-26</time>
+                <time title="修改时间：2021-05-31 21:25:14" itemprop="dateModified" datetime="2021-05-31T21:25:14+08:00">2021-05-31</time>
               </span>
 
           
@@ -204,14 +206,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>12</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -224,6 +226,45 @@
 
       
         <h1 id="vue3-0入门"><a href="#vue3-0入门" class="headerlink" title="vue3.0入门"></a>vue3.0入门</h1><p><a target="_blank" rel="noopener" href="http://huaxhe.gitee.io/vue3_study_docs/">参考笔记</a></p>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>TypeScript是JS的超集，主要提供了类型系统和对ES6+的支持</p>
+<p>安装也很简单</p>
+<p>在确保自己的电脑上安装了node.js的情况下使用以下命令即可</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br></pre></td></tr></table></figure>
+<p>TypeScript不能直接使用，需要转化成js之后再使用</p>
+<p>命令行转换代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc .\TypeScript\01.ts</span><br></pre></td></tr></table></figure>
+<p>这样做太麻烦了</p>
+<p>使用vscode自动编译</p>
+<p>分为三步</p>
+<ul>
+<li>创建配置文件</li>
+<li>修改配置文件属性</li>
+<li>启动监视任务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1). 生成配置文件tsconfig.json</span><br><span class="line">    tsc --init</span><br><span class="line">2). 修改tsconfig.json配置</span><br><span class="line">    &quot;outDir&quot;: &quot;.&#x2F;js&quot;,</span><br><span class="line">    &quot;strict&quot;: false,</span><br><span class="line">3). 启动监视任务:</span><br><span class="line">    终端 -&gt; 运行任务 -&gt; 监视tsconfig.json</span><br></pre></td></tr></table></figure>
+<h2 id="类型注解"><a href="#类型注解" class="headerlink" title="类型注解"></a>类型注解</h2><p>TypeScript 里的类型注解是一种轻量级的为函数或变量添加约束的方式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(()&#x3D;&gt;&#123;</span><br><span class="line">   &#x2F;&#x2F; 将str变量注解成string</span><br><span class="line">   function showMsg(str:string)&#123;</span><br><span class="line">    return &#39;床前明月光&#39;+str</span><br><span class="line">   &#125; </span><br><span class="line">   let msg &#x3D; &#39;疑似地上霜&#39;</span><br><span class="line">   console.log(showMsg(msg))</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>在 TypeScript 里，只在两个类型内部的结构兼容，那么这两个类型就是兼容的。 这就允许我们在实现接口时候只要保证包含了接口要求的结构就可以，而不必明确地使用 implements 语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 接口:也是一种约束</span><br><span class="line"></span><br><span class="line">(()&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; 定义一个接口</span><br><span class="line">    interface IPerson&#123;</span><br><span class="line">        firstName:string</span><br><span class="line">        lastName:string</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 输出姓名</span><br><span class="line">    function showFullName(person: IPerson)&#123;</span><br><span class="line">        return person.firstName + &#39;_&#39; + person.lastName</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 定义的一个对象</span><br><span class="line">    const person &#x3D; &#123;</span><br><span class="line">        firstName:&#39;东方&#39;,</span><br><span class="line">        lastName:&#39;不败&#39;,</span><br><span class="line">        suibian:&#39;saas&#39;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    console.log(showFullName(person))</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>概念和java中的差不多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 接口:也是一种约束</span><br><span class="line"></span><br><span class="line">(()&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; 定义一个接口</span><br><span class="line">    interface IPerson&#123;</span><br><span class="line">        firstName:string</span><br><span class="line">        lastName:string</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 输出姓名</span><br><span class="line">    function showFullName(person: IPerson)&#123;</span><br><span class="line">        return person.firstName + &#39;_&#39; + person.lastName</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 定义的一个类</span><br><span class="line">    class Person&#123;</span><br><span class="line">        firstName:string</span><br><span class="line">        lastName:string</span><br><span class="line">        fullName:string</span><br><span class="line">        constructor(firstName:string,lastName:string)&#123;</span><br><span class="line">            this.firstName &#x3D; firstName</span><br><span class="line">            this.lastName &#x3D; lastName</span><br><span class="line">            this.fullName &#x3D; this.firstName + &quot;_&quot; + this.lastName </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    const person &#x3D; new Person(&#39;诸葛&#39;,&#39;孔明&#39;)</span><br><span class="line">    console.log(showFullName(person))</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<h2 id="webpack打包发布"><a href="#webpack打包发布" class="headerlink" title="webpack打包发布"></a>webpack打包发布</h2><p>对项目进行打包发布</p>
+<p>这里要注意文件夹目录，这全部文件都是在同一个目录下</p>
+<p><img src="/2021/05/20/vueBase/file-tree01.png" alt="file-tree01"></p>
+<p>其中node_modules和package-lock.json是安装相关打包工具生成</p>
+<p>按一下顺序进行命令输入</p>
+<p>package.jsons生成命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+<p>修改中的内容</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">   &quot;dev&quot;: &quot;cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js&quot;,</span><br><span class="line">   &quot;build&quot;: &quot;cross-env NODE_ENV=production webpack --config build/webpack.config.js&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>tsconfig.json生成命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --init</span><br></pre></td></tr></table></figure>
+<p>node_modules产生</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install typescript -D</span><br><span class="line">npm install webpack -D</span><br><span class="line">npm install webpack-cli@3.3.12 -D</span><br><span class="line">npm install webpack-dev-server -D</span><br><span class="line">npm install html-webpack-plugin -D</span><br><span class="line">npm install clean-webpack-plugin -D</span><br><span class="line">npm install ts-loader -D</span><br><span class="line">npm install cross-env -D</span><br></pre></td></tr></table></figure>
+<p>build目录下的webpack.config.js的内容为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; CleanWebpackPlugin &#125; = <span class="built_in">require</span>(<span class="string">&#x27;clean-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isProd = process.env.NODE_ENV === <span class="string">&#x27;production&#x27;</span> <span class="comment">// 是否生产环境</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">dir</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> path.resolve(__dirname, <span class="string">&#x27;..&#x27;</span>, dir)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: isProd ? <span class="string">&#x27;production&#x27;</span> : <span class="string">&#x27;development&#x27;</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">&#x27;./src/main.ts&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: resolve(<span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">    filename: <span class="string">&#x27;[name].[contenthash:8].js&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.tsx?$/</span>,</span><br><span class="line">        use: <span class="string">&#x27;ts-loader&#x27;</span>,</span><br><span class="line">        include: [resolve(<span class="string">&#x27;src&#x27;</span>)]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(&#123;&#125;),</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: <span class="string">&#x27;./public/index.html&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">&#x27;.ts&#x27;</span>, <span class="string">&#x27;.tsx&#x27;</span>, <span class="string">&#x27;.js&#x27;</span>]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  devtool: isProd ? <span class="string">&#x27;cheap-module-source-map&#x27;</span> : <span class="string">&#x27;eval-cheap-source-map&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    host: <span class="string">&#x27;localhost&#x27;</span>, <span class="comment">// 主机名</span></span><br><span class="line">    stats: <span class="string">&#x27;errors-only&#x27;</span>, <span class="comment">// 打包日志输出输出错误信息</span></span><br><span class="line">    port: <span class="number">8081</span>,</span><br><span class="line">    open: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发布和构建命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -301,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-0%E5%85%A5%E9%97%A8"><span class="nav-text">vue3.0入门</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-0%E5%85%A5%E9%97%A8"><span class="nav-text">vue3.0入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TypeScript"><span class="nav-text">TypeScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3"><span class="nav-text">类型注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3"><span class="nav-text">接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83"><span class="nav-text">webpack打包发布</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
